@@ -1,0 +1,125 @@
+# Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear
+# twice and others appear once. Find all the elements of [1, n] inclusive that do not
+# appear in this array.
+# Input: [4,3,2,7,8,2,3,1]
+# Output:[5,6]
+# !/usr/bin/env python3
+#################################################
+
+#################################################
+import numpy as np
+
+
+def one(x):
+    # Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear
+    # twice and others appear once. Find all the elements of [1, n] inclusive that do not
+    # appear in this array.
+    # Input: [4,3,2,7,8,2,3,1]
+    # Output:[5,6]
+
+    # create array for comparison using Numpy
+
+    print("List to compare values:", x)
+    # find size of array using np.size
+    n = np.size(x)
+    # create array using range 1 to n(np.size)+1 usingnp.arange(1, (n+1), 1)
+    arrn = np.arange(1, (n + 1), 1)
+    print("List  [1,n]:", arrn)
+    # numpy.in1d() function test whether each element of a 1-D array
+    # is also present in a second array and return a boolean array the same length
+    index = np.in1d(arrn, x, invert=True)
+
+    array_missing = np.where(index)
+
+    list_missing = np.uint32(array_missing)
+    # creating list
+    list_missing.tolist()
+    # unpack list in list
+    final_answer = [item for sublist in list_missing for item in sublist]
+    print("Elements in list(1,n) and not in initial list:", final_answer)
+    print()
+
+
+arr1 = np.array([4, 3, 2, 7, 8, 2, 3, 1])
+random_number = np.random.randint(1,101,1)
+
+random_number2 = np.random.randint(1,101,1)
+
+arr2 = np.random.randint(1,101,random_number)
+
+arr3 = np.random.randint(1,101,random_number2)
+
+one(arr1)
+one(arr2)
+one(arr3)
+
+def two(n):
+# Given a non-negative integer numRows, generate the first numRows of Pascal's
+# triangle. In Pascal's triangle, each number is the sum of the two numbers directly above
+# it.
+# Input: 5
+# Output:
+# [
+# [1],
+# [1,1],
+# [1,2,1],
+# [1,3,3,1],
+# [1,4,6,4,1]
+# ]
+
+# Pascal function
+
+    for line in range(1, n + 1):
+        constant= 1;  # used to represent C(line, i)
+        for i in range(1, line + 1):
+            # The first value in a
+            # line is always 1
+            print(constant, end=" ")
+            constant = int(constant * (line - i) / i);
+        print("");
+
+
+n = int(input("Please enter number of rows desired for Pascal's Triangle: "))
+two(n)
+print()
+
+def three(code):
+
+    stack, num, string = [], 0, ""
+    for c in code:
+        if c == "[":
+            stack += string,
+            stack += num,
+            num, string = 0, ""
+        elif c == "]":
+            pre_num, pre_string = stack.pop(), stack.pop()
+            string = pre_string + pre_num * string
+        elif c.isdigit():
+            num = num * 10 + int(c)
+        else:
+            string += c
+    print(f"Encoded string {code} for is:", string)
+
+code = "3[a]2[bc]"
+three(code)
+code = "3[a2[c]]"
+three(code)
+code = "2[abc]3[cd]ef"
+three(code)
+
+code = str(input("Please enter encoding sequence according to the format: #to repeat code positive integer[letter(s)] like 2[a]3[z]: "))
+three(code)
+print()
+
+def four():
+
+    array1 = np.array([4,1,8,4,5])
+    print("Array1: ", array1)
+    array2 = [5,6,1,8,4,5]
+    print("Array2: ", array2)
+
+    common_values = np.intersect1d(array1, array2)
+    print(common_values[0])
+
+
+four()
